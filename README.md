@@ -2,6 +2,8 @@
 
 LunchBot is a simple Slack bot to find lunch.
 
+[![Build Status](https://travis-ci.org/chayelheinsen/LunchBot.svg?branch=master)](https://travis-ci.org/chayelheinsen/LunchBot)
+
 # Getting Started
 Requires Ruby 2.3.x
 
