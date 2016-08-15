@@ -10,7 +10,7 @@ Requires Ruby 2.3.x
 * Fork this repo or press the deploy to Heroku button below.
 * Set up your `.env`. Take a look at `Environment Variables`.
 * `bundle install`
-* `bundle exec ruby lunch_bot.rb`
+* `foreman start`
 
 # How to use
 
