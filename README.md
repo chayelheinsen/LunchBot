@@ -22,6 +22,21 @@ Create a new Bot Integration under [services/new/bot](http://slack.com/services/
 
 On the next screen, note the API token.
 
+Invite lunchbot (or whatever you named your bot) to a channel. Any time someone mentions food or lunch, lunchbot will provide a place to eat.
+
+## Commands
+
+Currently LunchBot is very basic but accepting PR's!
+
+Some examples:
+
+* `lunchbot food`
+* `lunchbot lunch`
+* lunchbot will also be invoked it `food` or `lunch` is found in any sentence. - TODO: Add env var to disable this
+* You can also set the location to search.
+  * `food location: 32828`
+  * `food location: 1234 Some Road, Orlando, FL`
+
 # Environment Variables
 
 There are a few variables the app will require. You can take a look at the `.env.example` for an example of the available variables and how to set up your `.env`.
