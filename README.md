@@ -19,4 +19,4 @@ To set up the `.env`, touch a `.env` file, copy the contents of `.env.example` a
 
 # Deploy to Heroku
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/chayelheinsen/LunchBot/tree/master)
