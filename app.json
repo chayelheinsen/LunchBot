@@ -27,6 +27,10 @@
     "YELP_TOKEN_SECRET": {
       "description": "Yelp Token Secret",
       "required": true
+    },
+    "DEFAULT_ZIP_CODE": {
+      "description": "The zip code to deault to for searching. If this isn't included, we will default to 32789",
+      "required": false
     }
   }
 }
