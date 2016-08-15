@@ -45,3 +45,11 @@ To set up the `.env`, touch a `.env` file, copy the contents of `.env.example` a
 # Deploy to Heroku
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/chayelheinsen/LunchBot/tree/master)
+
+# Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
