@@ -12,6 +12,16 @@ Requires Ruby 2.3.x
 * `bundle install`
 * `bundle exec ruby lunch_bot.rb`
 
+# How to use
+
+Once the app is running, you'll need to set up a SlackBot.
+
+Create a new Bot Integration under [services/new/bot](http://slack.com/services/new/bot).
+
+![](screenshots/register-bot.png)
+
+On the next screen, note the API token.
+
 # Environment Variables
 
 There are a few variables the app will require. You can take a look at the `.env.example` for an example of the available variables and how to set up your `.env`.
