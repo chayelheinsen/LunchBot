@@ -1,0 +1,32 @@
+{
+  "name": "LunchBot",
+  "description": "A Slack bot to find lunch.",
+  "repository": "https://github.com/chayelheinsen/lunchbot",
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-ruby"
+    }
+  ],
+  "env": {
+    "SLACK_API_TOKEN": {
+      "description": "Slack API Token",
+      "required": true
+    },
+    "YELP_CONSUMER_KEY": {
+      "description": "Yelp Consumer Key",
+      "required": true
+    },
+    "YELP_CONSUMER_SECRET": {
+      "description": "Yelp Consumer Secret",
+      "required": true
+    },
+    "YELP_TOKEN": {
+      "description": "Yelp Token",
+      "required": true
+    },
+    "YELP_TOKEN_SECRET": {
+      "description": "Yelp Token Secret",
+      "required": true
+    }
+  }
+}
