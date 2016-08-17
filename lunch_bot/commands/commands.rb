@@ -6,7 +6,7 @@ module LunchBot
           location = ENV['DEFAULT_ZIP_CODE']&.to_s || "32789"
           location = match[:location].split.join(" ") unless match[:location].blank?
           puts "Location: #{location}"
-          result = Yelp.client.search(location, { term: 'food' })
+          result = ::Yelp.client.search(location, { term: 'food' })
           result = result.businesses[rand(0..result.businesses.length)]
           address = result.location.display_address.join(", ")
           # client.say(text: "I recommend `#{result.name}` at `#{address}`", channel: data.channel)
@@ -23,7 +23,7 @@ module LunchBot
                   }
                 ]
           )
-        rescue Yelp::Error::UnavailableForLocation => e
+        rescue ::Yelp::Error::UnavailableForLocation => e
           client.web_client.chat_postMessage(
             channel: data.channel,
             as_user: true,
@@ -36,7 +36,7 @@ module LunchBot
                   }
                 ]
           )
-        rescue Yelp::Error::MissingParameter => e
+        rescue ::Yelp::Error::MissingParameter => e
           client.web_client.chat_postMessage(
             channel: data.channel,
             as_user: true,
