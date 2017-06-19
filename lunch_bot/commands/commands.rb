@@ -1,15 +1,16 @@
 module LunchBot
   module Commands
-    class Yelp < SlackRubyBot::Commands::Base
-      match /((f|F)ood|(l|L)unch) ?((location:)(?<location>[a-zA-Z0-9_, ]*))?/ do |client, data, match|
+    class YelpCommands < SlackRubyBot::Commands::Base
+      MATCH_REGEX = /(food|lunch) ?((location:)(?<location>[a-zA-Z0-9_, ]*))?/i
+
+      match MATCH_REGEX do |client, data, match|
         begin
           location = ENV['DEFAULT_ZIP_CODE']&.to_s || "32789"
           location = match[:location].split.join(" ") unless match[:location].blank?
           puts "Location: #{location}"
-          result = ::Yelp.client.search(location, { term: 'food' })
+          result = Yelp.client.search(location, { term: "food" })
           result = result.businesses[rand(0..result.businesses.length)]
           address = result.location.display_address.join(", ")
-          # client.say(text: "I recommend `#{result.name}` at `#{address}`", channel: data.channel)
 
           client.web_client.chat_postMessage(
             channel: data.channel,
@@ -23,28 +24,38 @@ module LunchBot
                   }
                 ]
           )
-        rescue ::Yelp::Error::UnavailableForLocation => e
+        rescue Yelp::Error::UnavailableForLocation => e
+          YelpCommands.handle_location_error(client, data, e)
+        rescue Yelp::Error::MissingParameter => e
+          YelpCommands.handle_error(client, data, e)
+        end
+
+        private
+
+        def self.handle_error(client, data, error)
           client.web_client.chat_postMessage(
             channel: data.channel,
             as_user: true,
             attachments: [
                   {
-                    fallback: "#{e} - If this is an address put in commas. i.e 1234 Some Road, Orlando, FL",
+                    fallback: "#{error}",
                     title: "Opps! Something's not right.",
-                    text: "#{e} - If this is an address put in commas. i.e 1234 Some Road, Orlando, FL",
+                    text: "#{error}",
                     color: '#FF0000'
                   }
                 ]
           )
-        rescue ::Yelp::Error::MissingParameter => e
+        end
+
+        def self.handle_location_error(client, data, error)
           client.web_client.chat_postMessage(
             channel: data.channel,
             as_user: true,
             attachments: [
                   {
-                    fallback: "#{e}",
+                    fallback: "#{error} - If this is an address put in commas. i.e 1234 Some Road, Orlando, FL",
                     title: "Opps! Something's not right.",
-                    text: "#{e}",
+                    text: "#{error} - If this is an address put in commas. i.e 1234 Some Road, Orlando, FL",
                     color: '#FF0000'
                   }
                 ]
